@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Bukedea Comprehensive School | KNOWLEDGE AND INNOVATION.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fa;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        /* ========== SPLASH SCREEN ========== */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f2b3d 0%, #1a4a6f 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .splash-content {
+            text-align: center;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .splash-badge {
+            width: 140px;
+            height: 140px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: pulse 1.5s infinite;
+        }
+
+        .splash-badge img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .splash-title {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .splash-subtitle {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        /* TikTok-style loading dots */
+        .tiktok-loader {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .tiktok-loader span {
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            animation: tiktokBounce 0.8s ease-in-out infinite;
+        }
+
+        .tiktok-loader span:nth-child(1) { animation-delay: 0s; }
+        .tiktok-loader span:nth-child(2) { animation-delay: 0.15s; }
+        .tiktok-loader span:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes tiktokBounce {
+            0%, 100% { transform: translateY(0); opacity: 0.4; }
+            50% { transform: translateY(-15px); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+            50% { transform: scale(1.05); box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========== CAMPUS SELECTION SCREEN ========== */
+        .campus-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #e8f0f8 0%, #d1e2f0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease;
+        }
+
+        .campus-container {
+            max-width: 1000px;
+            width: 90%;
+            padding: 2rem;
+        }
+
+        .campus-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .campus-header h2 {
+            font-size: 2.2rem;
+            color: #1e3a5f;
+            margin-bottom: 0.5rem;
+        }
+
+        .campus-header p {
+            color: #5a6e8a;
+        }
+
+        .campus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .campus-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 2px solid transparent;
+        }
+
+        .campus-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            border-color: #3b82f6;
+        }
+
+        .campus-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6, #1e3a5f);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .campus-icon i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .campus-card h3 {
+            font-size: 1.5rem;
+            color: #1e3a5f;
+            margin-bottom: 0.5rem;
+        }
+
+        .campus-card .location {
+            color: #6b7280;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .campus-card .features {
+            text-align: left;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .campus-card .features p {
+            font-size: 0.85rem;
+            color: #4b5563;
+            margin: 0.5rem 0;
+        }
+
+        .campus-card .features i {
+            color: #3b82f6;
+            width: 20px;
+            margin-right: 8px;
+        }
+
+        /* ========== MAIN WEBSITE ========== */
+        .main-website {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .main-website.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-area img {
+            height: 50px;
+            width: auto;
+            border-radius: 12px;
+        }
+
+        .logo-area h1 {
+            font-size: 1.2rem;
+            color: #1e3a5f;
+        }
+
+        .logo-area .campus-badge {
+            background: #3b82f6;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            margin-left: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        .campus-switch {
+            background: #f3f4f6;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .campus-switch:hover {
+            background: #e5e7eb;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://tse3.mm.bing.net/th/id/OIP.5swd3ee2-fgHWTSjnxwFOAHaEK?rs=1&pid=ImgDetMain&o=7&rm=3');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero-text p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fbbf24;
+        }
+
+        .hero-stat .label {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.8rem;
+        }
+
+        .hero-badge {
+            background: rgba(255,255,255,0.95);
+            border-radius: 50%;
+            width: 220px;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .hero-badge img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            color: #1e3a5f;
+            font-weight: 700;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #3b82f6;
+            margin: 0.8rem auto;
+            border-radius: 2px;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #3b82f6, #1e3a5f);
+            padding: 1.5rem;
+            color: white;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Application Form */
+        .apply-form {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-content h4 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #334155;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            .hero-stats {
+                justify-content: center;
+            }
+            .nav-links {
+                display: none;
+            }
+            .navbar .nav-container {
+                flex-wrap: wrap;
+            }
+            section {
+                padding: 3rem 1rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- SPLASH SCREEN -->
+<div id="splashScreen" class="splash-screen">
+    <div class="splash-content">
+        <div class="splash-badge">
+            <img src="https://th.bing.com/th?q=Bukedea+Comprehensive+School+Badge+Logo&w=120&h=120&c=1&rs=1&qlt=70&o=7&cb=1&dpr=1.5&pid=InlineBlock&rm=3&mkt=en-WW&cc=UG&setlang=en&adlt=strict&t=1&mw=247" alt="School Badge">
+        </div>
+        <h1 class="splash-title">Bukedea Comprehensive School</h1>
+        <p class="splash-subtitle">Knowledge and Innovation.</p>
+        <div class="tiktok-loader">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
+
+<!-- CAMPUS SELECTION SCREEN -->
+<div id="campusScreen" class="campus-screen" style="display: none;">
+    <div class="campus-container">
+        <div class="campus-header">
+            <h2>Choose Your Campus</h2>
+            <p>Both campuses offer excellence — select your preferred location</p>
+        </div>
+        <div class="campus-grid">
+            <div class="campus-card" onclick="selectCampus('southern')">
+                <div class="campus-icon">
+                    <i class="fas fa-tree"></i>
+                </div>
+                <h3>🌿 Southern Campus</h3>
+                <p class="location"><i class="fas fa-map-marker-alt"></i> Along Mbale–Soroti Highway</p>
+                <div class="features">
+                    <p><i class="fas fa-check-circle"></i> Main Administration Block</p>
+                    <p><i class="fas fa-check-circle"></i> 10,000-Seat Stadium</p>
+                    <p><i class="fas fa-check-circle"></i> Science & Computer Labs</p>
+                    <p><i class="fas fa-check-circle"></i> Boarding Facilities</p>
+                </div>
+            </div>
+            <div class="campus-card" onclick="selectCampus('northern')">
+                <div class="campus-icon">
+                    <i class="fas fa-mountain"></i>
+                </div>
+                <h3>⛰️ Northern Campus</h3>
+                <p class="location"><i class="fas fa-map-marker-alt"></i> Bukedea Town Northern Division</p>
+                <div class="features">
+                    <p><i class="fas fa-check-circle"></i> Modern Classrooms</p>
+                    <p><i class="fas fa-check-circle"></i> Sports Training Grounds</p>
+                    <p><i class="fas fa-check-circle"></i> ICT Innovation Hub</p>
+                    <p><i class="fas fa-check-circle"></i> Day & Boarding Options</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN WEBSITE -->
+<div id="mainWebsite" class="main-website">
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-area">
+                <img src="https://th.bing.com/th?q=Bukedea+Comprehensive+School+Badge+Logo&w=120&h=120&c=1&rs=1&qlt=70&o=7&cb=1&dpr=1.5&pid=InlineBlock&rm=3&mkt=en-WW&cc=UG&setlang=en&adlt=strict&t=1&mw=247" alt="Logo">
+                <h1>Bukedea Comprehensive<br><span id="campusNameDisplay" style="font-size:0.7rem;">Southern Campus</span></h1>
+                <span id="campusBadge" class="campus-badge">Southern</span>
+            </div>
+            <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#academics">Academics</a>
+                <a href="#sports">Sports</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#apply">Apply</a>
+                <a href="#contact">Contact</a>
+                <div class="campus-switch" onclick="showCampusSelection()">
+                    <i class="fas fa-exchange-alt"></i> Switch Campus
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 id="heroTitle">Bukedea Comprehensive School<br><span style="font-size:1.5rem;">Southern Campus</span></h1>
+                <p id="heroDesc">Home of champions and academic excellence. Ranked 2nd nationally in UACE 2024. ISF World Cup Bronze Medalists.</p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="number" id="statStudents">2,500+</div>
+                        <div class="label">Students</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="number" id="statStaff">150+</div>
+                        <div class="label">Teaching Staff</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="number" id="statAchievements">25+</div>
+                        <div class="label">National Awards</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-badge">
+                <img src="https://th.bing.com/th?q=Bukedea+Comprehensive+School+Badge+Logo&w=120&h=120&c=1&rs=1&qlt=70&o=7&cb=1&dpr=1.5&pid=InlineBlock&rm=3&mkt=en-WW&cc=UG&setlang=en&adlt=strict&t=1&mw=247" alt="School Badge">
+            </div>
+        </div>
+    </section>
+
+    <!-- Academics Section -->
+    <section id="academics">
+        <h2 class="section-title">Academics</h2>
+        <div class="cards-grid" id="academicsGrid"></div>
+    </section>
+
+    <!-- Sports Section -->
+    <section id="sports">
+        <h2 class="section-title">🏆 Sports Excellence</h2>
+        <div class="cards-grid" id="sportsGrid"></div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <h2 class="section-title">Our Gallery</h2>
+        <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <!-- Apply Section -->
+    <section id="apply">
+        <h2 class="section-title">Apply Now</h2>
+        <div class="apply-form">
+            <form id="applicationForm">
+                <div class="form-group">
+                    <input type="text" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <select required>
+                        <option value="">Select Campus</option>
+                        <option id="campusOptionSouthern">Southern Campus</option>
+                        <option id="campusOptionNorthern">Northern Campus</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select required>
+                        <option value="">Applying For</option>
+                        <option>O-Level (S.1 - S.4)</option>
+                        <option>A-Level (S.5 - S.6)</option>
+                        <option>Sports Scholarship</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea rows="3" placeholder="Additional Information"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Application</button>
+            </form>
+            <p style="text-align:center; margin-top:1rem; font-size:0.8rem;">Application fee: UGX 50,000 (MTN/Airtel Mobile Money)</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="cards-grid" id="contactGrid"></div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h4>Bukedea Comprehensive School</h4>
+                <p id="footerAddress">Excellence in Education & Sports</p>
+                <p>Owned by Rt. Hon. Anita Annet Among</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <p><a href="#academics" style="color:#94a3b8; text-decoration:none;">Academics</a></p>
+                <p><a href="#sports" style="color:#94a3b8; text-decoration:none;">Sports</a></p>
+                <p><a href="#apply" style="color:#94a3b8; text-decoration:none;">Admissions</a></p>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p id="footerPhone">📞 +256 772 123456</p>
+                <p>✉️ info@bukedeacomprehensive.sc.ug</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Bukedea Comprehensive School. All rights reserved.</p>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Gallery images
+    const galleryImages = [
+        "https://th.bing.com/th/id/OIP.85_ikYuJ4SIyiYEqDEX1LwHaD4?w=278&h=150&c=6&o=7&dpr=1.5&pid=1.7&rm=3",
+        "https://th.bing.com/th/id/OIP.YtJpoZh-wh8-Lj1d0jn3sgHaE8?w=181&h=150&c=6&o=7&dpr=1.5&pid=1.7&rm=3",
+        "https://th.bing.com/th/id/OIP.H6dUt_yj6HYAeRQnk-wnswHaEU?w=299&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3"
+    ];
+
+    let currentCampus = 'southern';
+
+    // Campus-specific data
+    const campusData = {
+        southern: {
+            name: 'Southern Campus',
+            heroTitle: 'Bukedea Comprehensive School<br><span style="font-size:1.5rem;">Southern Campus</span>',
+            heroDesc: 'Main campus with world-class facilities. Home to the 10,000-seat stadium. Ranked 2nd nationally in UACE 2024.',
+            students: '2,500+',
+            staff: '150+',
+            achievements: '25+',
+            academics: [
+                { title: 'O-Level Program', desc: 'Uganda Certificate of Education (UCE). Subjects: Mathematics, English, Sciences, Humanities, Computer Studies.', icon: '📚' },
+                { title: 'A-Level Program', desc: 'Uganda Advanced Certificate of Education (UACE). Combinations: PCM, PEM, HEG, HIC, BCM.', icon: '🎓' },
+                { title: 'ICT & Innovation', desc: 'State-of-the-art computer labs, e-learning platforms, and modern science laboratories.', icon: '💻' }
+            ],
+            sports: [
+                { title: 'World-Class Stadium', desc: '10,000-seat capacity stadium hosting national and international matches.' },
+                { title: 'Football Academy', desc: 'ISF World Cup Bronze Medalists. Regular tournaments and professional coaching.' },
+                { title: 'Multi-Sports Complex', desc: 'Volleyball, Basketball, Swimming, Athletics, and Handball facilities.' }
+            ],
+            contact: [
+                { icon: '📍', title: 'Location', detail: 'Along Mbale–Soroti Highway, Bukedea Town' },
+                { icon: '📞', title: 'Phone', detail: '+256 772 123456, +256 756 123456' },
+                { icon: '⏰', title: 'Office Hours', detail: 'Mon-Fri: 8am-5pm, Sat: 9am-1pm' }
+            ],
+            footerAddress: 'Southern Campus, Along Mbale–Soroti Highway',
+            footerPhone: '📞 +256 772 123456'
+        },
+        northern: {
+            name: 'Northern Campus',
+            heroTitle: 'Bukedea Comprehensive School<br><span style="font-size:1.5rem;">Northern Campus</span>',
+            heroDesc: 'Modern learning environment with ICT focus. Sports training grounds and day/boarding options available.',
+            students: '1,800+',
+            staff: '100+',
+            achievements: '15+',
+            academics: [
+                { title: 'O-Level Program', desc: 'UCE curriculum with focus on sciences and technology. Modern classrooms and labs.', icon: '📚' },
+                { title: 'A-Level Program', desc: 'UACE program with smaller class sizes for personalized attention.', icon: '🎓' },
+                { title: 'ICT Innovation Hub', desc: 'Dedicated computer lab with high-speed internet and coding programs.', icon: '💻' }
+            ],
+            sports: [
+                { title: 'Training Grounds', desc: 'Dedicated football and volleyball training pitches for daily practice.' },
+                { title: 'Sports Development', desc: 'Talent identification and development programs for young athletes.' },
+                { title: 'Inter-Campus Competitions', desc: 'Regular matches with Southern Campus and other schools in the region.' }
+            ],
+            contact: [
+                { icon: '📍', title: 'Location', detail: 'Bukedea Town Northern Division' },
+                { icon: '📞', title: 'Phone', detail: '+256 782 123456, +256 766 123456' },
+                { icon: '⏰', title: 'Office Hours', detail: 'Mon-Fri: 8am-5pm, Sat: 9am-1pm' }
+            ],
+            footerAddress: 'Northern Campus, Bukedea Town Northern Division',
+            footerPhone: '📞 +256 782 123456'
+        }
+    };
+
+    function loadGallery() {
+        const galleryGrid = document.getElementById('galleryGrid');
+        if(galleryGrid) {
+            galleryGrid.innerHTML = galleryImages.map(img => `
+                <div class="gallery-item">
+                    <img src="${img}" alt="Bukedea School Gallery" loading="lazy">
+                </div>
+            `).join('');
+        }
+    }
+
+    function loadCampusContent() {
+        const data = campusData[currentCampus];
+        
+        // Update hero
+        document.getElementById('heroTitle').innerHTML = data.heroTitle;
+        document.getElementById('heroDesc').innerText = data.heroDesc;
+        document.getElementById('statStudents').innerText = data.students;
+        document.getElementById('statStaff').innerText = data.staff;
+        document.getElementById('statAchievements').innerText = data.achievements;
+        
+        // Update campus name display
+        document.getElementById('campusNameDisplay').innerText = data.name;
+        document.getElementById('campusBadge').innerText = currentCampus === 'southern' ? 'Southern' : 'Northern';
+        
+        // Update academics grid
+        const academicsGrid = document.getElementById('academicsGrid');
+        academicsGrid.innerHTML = data.academics.map(ac => `
+            <div class="card">
+                <div class="card-header">
+                    <h3>${ac.icon} ${ac.title}</h3>
+                </div>
+                <div class="card-body">
+                    <p>${ac.desc}</p>
+                </div>
+            </div>
+        `).join('');
+        
+        // Update sports grid
+        const sportsGrid = document.getElementById('sportsGrid');
+        sportsGrid.innerHTML = data.sports.map(sp => `
+            <div class="card">
+                <div class="card-header">
+                    <h3>${sp.title}</h3>
+                </div>
+                <div class="card-body">
+                    <p>${sp.desc}</p>
+                </div>
+            </div>
+        `).join('');
+        
+        // Update contact grid
+        const contactGrid = document.getElementById('contactGrid');
+        contactGrid.innerHTML = data.contact.map(ct => `
+            <div class="card">
+                <div class="card-header">
+                    <h3>${ct.icon} ${ct.title}</h3>
+                </div>
+                <div class="card-body">
+                    <p>${ct.detail}</p>
+                </div>
+            </div>
+        `).join('');
+        
+        // Update footer
+        document.getElementById('footerAddress').innerText = data.footerAddress;
+        document.getElementById('footerPhone').innerHTML = data.footerPhone;
+        
+        // Update application form campus options
+        const campusSelect = document.querySelector('#applicationForm select:nth-of-type(2)');
+        if(campusSelect) {
+            campusSelect.innerHTML = `
+                <option value="">Select Campus</option>
+                <option value="southern">Southern Campus</option>
+                <option value="northern">Northern Campus</option>
+            `;
+        }
+    }
+
+    function selectCampus(campus) {
+        currentCampus = campus;
+        loadCampusContent();
+        
+        // Hide campus screen, show main website
+        document.getElementById('campusScreen').style.opacity = '0';
+        setTimeout(() => {
+            document.getElementById('campusScreen').style.display = 'none';
+            document.getElementById('mainWebsite').classList.add('active');
+            document.getElementById('mainWebsite').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('mainWebsite').style.opacity = '1';
+            }, 50);
+        }, 300);
+    }
+
+    function showCampusSelection() {
+        document.getElementById('mainWebsite').style.opacity = '0';
+        setTimeout(() => {
+            document.getElementById('mainWebsite').classList.remove('active');
+            document.getElementById('mainWebsite').style.display = 'none';
+            document.getElementById('campusScreen').style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('campusScreen').style.opacity = '1';
+            }, 50);
+        }, 300);
+    }
+
+    function toggleMobileMenu() {
+        document.getElementById('navLinks').classList.toggle('active');
+    }
+
+    // Splash screen handling
+    setTimeout(() => {
+        const splash = document.getElementById('splashScreen');
+        splash.style.opacity = '0';
+        setTimeout(() => {
+            splash.style.display = 'none';
+            document.getElementById('campusScreen').style.display = 'flex';
+            document.getElementById('campusScreen').style.opacity = '1';
+        }, 800);
+    }, 2500);
+
+    // Application form submission
+    document.getElementById('applicationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('✅ Application submitted successfully! We will contact you within 3 working days.\n📞 For inquiries: ' + (currentCampus === 'southern' ? '+256 772 123456' : '+256 782 123456'));
+        this.reset();
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const hash = this.getAttribute('href');
+            if(hash && hash !== '#') {
+                e.preventDefault();
+                const target = document.querySelector(hash);
+                if(target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    document.getElementById('navLinks')?.classList.remove('active');
+                }
+            }
+        });
+    });
+
+    // Load gallery
+    loadGallery();
+</script>
+</body>
+</html>
